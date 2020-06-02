@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+          <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <link rel="shortcut icon" type="image/png" href="../static/img/tab-icon.png" />
+
+        <!--  bootstrap script/CSS Files -->
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+                                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+                                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+        <!-- Vendor icofont CSS Files -->
+        <link href="../static/vendor/icofont/icofont.min.css" rel="stylesheet">
+        <link href="../static/css/search/search.css" rel="stylesheet">
+        <link href="../static/css/search/sideEditForm.css" rel="stylesheet">
+        <link href="../static/css/sidenav.css" rel="stylesheet">    <!--home page side nav-->
+        <link href="../static/css/common/header.css" rel="stylesheet">    <!-- common page header css -->
+
+        <style>
+         
+        </style>
+
+    </head>
+    <body>
+
+      <!-- ======= sidenav ======= -->  
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="icofont-close-circled closebtn-icon "></i></a>
+        <a href="/home">Home</a>
+        <a href="/settings">Profile settings</a>
+        <a href="/settings">Add category</a>
+        <a href="/settings">Settings</a>
+      </div>
+      <!-- ======= sidenav  ends======= -->   
+
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top">
+            <div class="container d-flex ">
+              <div class="col-md-6">
+                <h1 class="logo mr-auto">
+                  <span class="mr-2" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                  <a href="/">Organised-Chaos'</a>
+                </h1>
+              </div>
+              
+              <div class="col-md-5">
+                <h5 class=" float-right scrollto mt-1 mr-2">
+                  Hi {{name}}
+                </h5>
+              </div>
+              <div class="col-md-1">
+                <a id="logout" class="btn btn-danger rounded mb-3 text-center" href="/logout">Logout</a>
+              </div>
+
+            </div>
+          </header>
+
+        <!--=======================edit side edit form ===============-->
+        <div id="editTask" class="editTask">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeForm()"><i class="icofont-close-circled closebtn-icon "></i></a>
+          <div id="task-display" class=" task-display">
+
+            <!-- ========= 1st toggle part selected task display container =============-->
+            <div id="task-display-section" class="task-display-section">
+              <div class="text-right h4 text-light mr-1 ">
+                <a href="javascript:void(0)" onclick="openEditor()"><i class="icofont-ui-edit  "></i> Edit</a>
+              </div>
+              
+              <div class="container">
+                <div class="row mb-1 task-display-heading">
+                  <div class=" col-md-4 ">
+                    <h4>Your task</h4>
+                  </div>
+                  <div class="col-md-6 ">
+                    <h4 id="display-date">05/01/2020</h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 text-warning"> Highlight </div>
+                  <div class="col-md-10 "> 
+                    <p id="display-title">i have to eat my food remind me </p>
+                  </div>  
+                </div>
+                <div class="row">
+                  <div class="col-md-2 text-warning">Category </div>
+                  <div class="col-md-6 "> 
+                   <p id="display-category">Food</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 text-warning"> Description </div>
+                  <div id="display-description-div" class="col-md-10 ">
+                    <p id="display-description">This is some text just trying how description looks in a todo list app thats all yeieieiejbsks what about you guys so we are gonna......
+                    </p> 
+                  </div>             
+                </div>
+              </div>    
+               <!-- ========= 1st toggle part image display =============-->
+              <div class="container task-display-image">
+                <h6 class="text-warning">Image Gallery</h6>
+                <div id="display-image-row" class="row">
+                  
+                </div>
+              </div>
+  
+            </div>
+
+             <!-- ========= 2nd toggle part selected task edit container =============-->
+
+            <div id="task-edit-section" class="task-edit-section">
+            <form action=""  id="updateTaskForm" method="POST" enctype="multipart/form-data">
+              <div class="text-right h4 text-light">
+                <button type="submit" id="saveTaskBtn" class=" btn btn-warning  m-auto shadow rounded-pill">Save</button>
+                <button onclick="cancelEditor()" class=" btn btn-primary shadow m-auto rounded-pill">cancel</button>
+              </div>
+              
+              <div class="container">
+                
+                  <div class="row mb-1 task-display-heading">
+                    <div class=" col-md-4 ">
+                      <h4>Edit your task</h4>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-2 text-warning"> Date </div>
+                    <div class="col-md-5 input-col"> 
+                      <input type="date" onchange="formDateValidate()" id="edit-date" class="text-light task-edit-input rounded-pill" name="date" >
+                    </div>                     
+                    <p id="dateSmallError" class="text-danger" style="font-size: 16px;margin-left: -5%; margin-bottom: -5%; display:none; ">* date should be after/equal to today's date</p>
+                  </div>
+                  
+                    <div class="col-md-12 text-center text-primary"> 
+                      <p id="editor-current-date">current task date: mm/dd/yyyy</p>  
+                  </div>
+               
+                  <div class="row ">
+                    <div class="col-lg-2 text-warning"> Highlight </div>
+                    <div class="col-lg-10 input-col"> 
+                      <input type="text" id="edit-title" style="width: 100%;" class="task-edit-input rounded-pill" id="title" value="sd" name="title" >
+                    </div>  
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-lg-2 text-warning">Category </div>
+                    <div class="col-lg-10  input-col"> 
+                      <select  id="edit-category" style="width: 100%;" class="text-light task-edit-input rounded-pill" name="category">
+                        {% for cat in categories %}
+                            <option value="{{cat}}">{{cat}}</option>
+                        {% endfor %}
+                      </select>
+                
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-lg-2 text-warning"> Description </div>
+                    <div class="col-lg-10 input-col">
+                      <textarea id="edit-description" class="task-edit-input comment" style="width: 100%;" name="description" type="text" id="comment"  rows="5">
+  
+                      </textarea>
+                    </div>             
+                  </div>
+  
+                </form>  
+              </div>    
+  
+               <!-- ========= 2st toggle part image edit =============-->
+              <div class="container mt-2 task-display-image">
+                <h6 class="text-warning text-center">Image Gallery</h6>
+                <div id="edit-image-row" class="row">
+                  
+                </div>
+               </div>
+  
+            </div>
+  
+          </div>
+        </div>  
+
+        <!----==================================float button ==========================================--------->
+        <div id="floatButtons" class="floatButtons">
+          <a href="/home" class="animated1 text-dark" id="home">home <i class="icofont-ui-home float-right"></i></a>
+          <a href="/home#heading-todo" class="animated2 " id="datenav">Categories <i class="icofont-label float-right"></i> </a>
+          <a href="/settings" class="animated3" id="searchcatnav">Settings<i class="icofont-ui-settings float-right h5"></i></a>
+        </div>
+
+        <div id="elseSideForm">
+          <!----============== search/filter section usung start/end date and category ===============-->
+          <section class="search-sec">
+              <div class="container">
+                  <form action="/filter" method="POST">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="row">
+                                  <div class="col-lg-1 p-0"></div>
+                                  <div class="col-lg-9 p-0">
+                                    <input type="text" name ="search" class="form-control searchBox" id="search" placeholder ="Search terms here...."></input>
+                                  </div>
+                                  
+                              </div>
+                              <div class="row mt-2">
+                                  <div class="col-lg-1 p-0"></div>
+                                  <div class="col-lg-2 mr-1 p-0">
+                                      <input type="date" class="form-control  date btn rounded-pill" id="startDate" name="startDate" placeholder="">
+                                          <span style="color:white">  from</span>
+                                      </input>
+                                  </div>
+                                  <div class="col-lg-2 mr-1  p-0">
+                                      <input type="date" class="form-control  date btn rounded-pill" id="endDate" name="endDate" placeholder="">
+                                          <span style="color:white;text-align: center;">  to</span>
+                                      </input>
+                                  </div>
+                                  <div class="col-lg-3  p-0">
+                                      <select class="form-control search-slt" name="category" id="categoryBox">
+                                          <option>Select Category</option>
+                                          {% for cat in categories %}
+                                             <option value="{{cat}}">{{cat}}</option>
+                                          {% endfor %}
+                                      </select> 
+                                  </div>
+                                  <div class="col-lg-2  p-0">
+                                      <button  type="submit" class="btn search-btn">Search</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </section> 
+
+          <!-- ======================== note to recognize that below task title is clickable =========================== -->
+          <section>
+            <div class="container" style="margin-left: 15%;">
+              <div class="row">
+                <h4 class="animated-heading"> To edit /view complete details of task click on the task listed below</h4>
+              </div>
+            </div>
+          </section>
+
+          <!-- ======================== flash of task uploaded sucessfully =========================== -->
+          {% with message = get_flashed_messages(with_categories=True) %}
+            {%if message%}
+              {% for category,message in message %}
+                <div class="alert alert-{{category}}  alert-dismissible " style="margin-left:50px;margin-right: 50px;" id="addedFlash" role="alert">
+                  {{message}}
+                  <button type="button" class="close" onclick="closeFlash()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {%endwith%}
+
+          <div class="container"> 
+              <div class="row task-row-collection">
+                <div class="col-md-12">
+                  <ul class="timeline">
+                    {% for row in data %}  
+                      {% set taskId = row[0] %}
+                      <li id="{{taskId}}" >
+                          <a href="javascript:void(0)" onclick="openForm({{taskId}})">{{row[4]}}</a>
+                          {% if row[7] == "no" %}
+                              <a href="javascript:void(0)" id="circle{{taskId}}" style="color:rgb(148, 148, 148); float: right;" onclick="taskDone({{taskId}})"><i class="icofont-check-circled h4 "></i></a> 
+                          {% endif %} 
+                          {% if row[7] == "yes" %}
+                              <a href="javascript:void(0)" id="circle{{taskId}}" style="color:#1e6; float: right;" onclick="taskNotDone({{taskId}})"><i class="icofont-check-circled h4 "></i></a> 
+                          {% endif %} 
+                          <a href="javascript:void(0)" style=" float: right;" onclick="deleteTask({{taskId}})"><i class="icofont-bin task-icon h4 text-danger "></i></a>
+                          <a href="javascript:void(0)" class="task-title" onclick="openForm({{taskId}})" ><p>{{row[2]}}</p></a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+          </div>
+
+          <div>
+              <a href="javascript:void(0)" id="topBtn" onclick="scrollToTop()" class="btn p-3">Top</a>
+          </div>  
+
+        </div>  
+
+     <!-- ===============side nav scripts================= -->
+  
+    <script>
+      function openNav() {
+        
+          if(document.getElementById("mySidenav").style.width == "250px")
+          {
+            closeNav();
+          }
+          else
+          {
+            closeForm();
+            document.getElementById("floatButtons").style.display = "none"
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("elseSideForm").style.marginLeft = "250px";
+            document.getElementById("header").style.marginLeft = "250px";
+          }
+      }
+      
+      function closeNav() {
+            document.getElementById("floatButtons").style.display = "block"
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("header").style.marginLeft = "0";
+            document.getElementById("elseSideForm").style.marginLeft = "0";
+      }
+      </script>    
+
+
+    <!-- =============== top button scripts================= -->         
+    <script>
+        mybutton = document.getElementById("topBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() 
+        {
+            if (window.innerHeight > 20 ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function scrollToTop() {
+            document.body.scrollTop = 0; 
+            document.documentElement.scrollTop = 0; 
+        }
+    </script>    
+
+    <!-- =============== task done/not done and delete task scripts================= -->         
+    <script>
+        function taskDone(taskId)
+        {
+          var xmlhttp = new XMLHttpRequest();
+          var url = "/taskDone/"+ taskId;
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("circle"+taskId).style.color="#1e6"
+              document.getElementById("circle"+taskId).setAttribute("onclick","taskNotDone("+taskId+")")
+              console.log("data statius changed to yes")
+            }
+          };
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+        }
+        function taskNotDone(taskId)
+        {
+          var xmlhttp = new XMLHttpRequest();
+          var url = "/taskNotDone/"+ taskId;
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("circle"+taskId).style.color="rgb(148, 148, 148)"
+              document.getElementById("circle"+taskId).setAttribute("onclick","taskDone("+taskId+")")
+                console.log("data statius changed to no")
+            }
+          };
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+        }  
+      
+        function deleteTask(taskId)
+        {    
+          document.getElementById(taskId).style.display="none"
+          var xmlhttp = new XMLHttpRequest();
+          var url = "/taskDelete/"+ taskId;
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("task Deleted successfully")
+            }
+          };
+          xmlhttp.open("GET", url, true);
+          xmlhttp.send();
+        }
+      </script>
+
+    <!-- =============== side Form display/edit toggle scripts================= -->         
+    <script>
+        function openForm(taskId) {
+            closeNav()
+            document.getElementById("editTask").style.width = "45%";
+            document.getElementById("editTask").style.paddingLeft="8px";
+            document.getElementById("editTask").style.paddingRight="8px";
+            document.getElementById("elseSideForm").style.marginRight = "45%";
+            document.getElementById("header").style.marginRight = "45%";
+            document.getElementById("header").style.zIndex="10"; 
+            document.getElementById("floatButtons").style.display = "none"
+            getDataToEdit(taskId)
+        }
+        
+        function closeForm() {
+            document.getElementById("editTask").style.width = "0px";
+            document.getElementById("editTask").style.paddingLeft="0px";
+            document.getElementById("editTask").style.paddingRight="0px";
+            document.getElementById("header").style.marginRight = "0px";
+            document.getElementById("elseSideForm").style.marginRight = "0px";
+            document.getElementById("header").style.zIndex="1030"; 
+            document.getElementById("floatButtons").style.display = "block"
+        }
+      </script>
+
+              
+    <!-- =============== getting data to edit and placing in form scripts ================= -->         
+    <script>
+      function getDataToEdit(taskId)
+      {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "/getDataToEdit/"+ taskId;
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var editData = JSON.parse(this.responseText);
+              placeInForm(editData,taskId);
+          }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+      }  
+      function placeInForm(editData , taskId)
+      { 
+        // DISPLAY SECtion editor and placing data here
+        console.log(editData);
+        document.getElementById("display-date").innerHTML=editData[0][4].substring(0,16);
+        document.getElementById("display-title").innerHTML=editData[0][2];
+        document.getElementById("display-category").innerHTML=editData[0][3];
+        document.getElementById("display-description").innerHTML=editData[0][5];
+        displayImageRow = document.getElementById("display-image-row")
+        displayImageRow.innerHTML="";
+        if(editData[0][6] != "")
+        {
+          images = editData[0][6].split("|");
+          imgTags = "";
+          var i=0;
+          for(i=1;i<images.length;i++)
+          {
+              imgTags = imgTags + "<div id=\"display-image-col" +(i-1)+"\" class=\"col-md-4 p-3\">"          +
+                                " <div class=\"thumbnail\"> "           +
+                                    "<a href=\"../static/img/taskImage/"+ images[i]  + " \"target=\"_blank\">"  +
+                                      "<img src=\"../static/img/taskImage/"+ images[i] +" \"class=\"zoom img-fluid \" alt= \"Lights\" style= \"width:100%\">" +
+                                    "</a>" +
+                                  "</div>" +
+                              "</div>"
+          }
+          displayImageRow.innerHTML=imgTags;
+        }
+
+        // edit section in side form editor and placing data here
+        document.getElementById("edit-title").setAttribute("value" , editData[0][2]);
+        document.getElementById("edit-description").innerHTML = editData[0][5];
+        document.getElementById("edit-category").value=editData[0][3];
+        datetoset = editData[0][4].substring(0,16).split(" ");
+        document.getElementById("editor-current-date").innerHTML="current date: " +datetoset[1]+"/"+datetoset[2] + "/" +datetoset[3];
+        document.getElementById("updateTaskForm").setAttribute("action","/updateTask/"+taskId)
+        editImageRow = document.getElementById("edit-image-row")
+        editImageRow.innerHTML="";
+        if(editData[0][6] != "")
+        {
+          images = editData[0][6].split("|");
+          imgTags = "";
+          var i=0;
+          for(i=1;i<images.length;i++)
+          {
+              imgTags = imgTags + "<div id=\"edit-image-col" +(i-1)+"\" class=\"col-md-4 p-3\">"          +
+                                " <div class=\"thumbnail\"> "           +
+                                    "<a href=\"javascript:void(0)\" onclick=\"deleteImage("+ taskId+","+(i-1)+")\" class=\"bin-in-image\">"   +
+                                    "<i class=\" icofont-bin task-icon h4 text-danger \"></i></a>"                                   +
+                                    "<a href=\"../static/img/taskImage/"   + images[i] + " \"target=\"_blank\">"                       +
+                                      "<img src=\"../static/img/taskImage/"+ images[i] +" \"class=\"zoom img-fluid \" alt= \"Lights\" style= \"width:100%\">" +
+                                    "</a>" +
+                                  "</div>" +
+                              "</div>"
+            
+          }
+          editImageRow.innerHTML=imgTags;
+        }  
+      }
+      function deleteImage(taskId,imageNo)
+      {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "/deleteImage/"+ taskId +"/" +imageNo;
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var deleteStatus = JSON.parse(this.responseText);
+              document.getElementById("edit-image-col"+imageNo).style.display="none";
+              document.getElementById("display-image-col"+imageNo).style.display="none";
+          }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+      }
+    </script> 
+     
+     
+    <!--======================================= side form editor toggle 1 amd 2 content ======================================-->
+
+      <script>
+        function openEditor()
+        {
+          document.getElementById("task-edit-section").style.display="block";
+          document.getElementById("task-display-section").style.display="none";
+        }
+
+        function cancelEditor()
+        {
+          document.getElementById("task-edit-section").style.display="none";
+          document.getElementById("task-display-section").style.display="block";
+        }
+      </script>
+      
+    <!--======================================= side editor date validation (should be >= todays date) ======================================-->
+    <script>
+        function formDateValidate()
+        {
+          enteredDate =document.getElementById("edit-date").value;
+          var d = new Date();
+          var todayDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+          var td = new Date(todayDate);
+          var ed = new Date(enteredDate);
+          console.log(td);
+          console.log(ed);
+          status = ed < td;
+          if(status == "true")
+          {
+            console.log("date not allowed");
+            document.getElementById("dateSmallError").style.display="block";
+            document.getElementById("saveTaskBtn").disabled = true;
+            document.getElementById("saveTaskBtn").style.cursor="not-allowed";            
+          }
+          else
+          {
+            console.log("date allowed");
+            document.getElementById("dateSmallError").style.display="none";
+            document.getElementById("saveTaskBtn").disabled = false;
+            document.getElementById("saveTaskBtn").style.cursor="pointer";
+          }
+        }
+    </script>
+
+    
+
+    </body>
+</html>

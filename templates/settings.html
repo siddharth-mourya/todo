@@ -1,0 +1,313 @@
+<html>
+    <head>
+         <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <link rel="shortcut icon" type="image/png" href="../static/img/tab-icon.png" />
+
+        <!-- ======= vendor icofont files  ======= -->
+        <link href="../static/vendor/icofont/icofont.min.css" rel="stylesheet">
+        
+        <!-- =======  bootstrap css and scripts   ======= -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+       <!-- ======= Local css files ======= -->
+        <link href="../static/css/setting/setting.css" rel="stylesheet">
+        <link href="../static/css/floatButtons.css" rel="stylesheet"> <!--=======here using float buttons css of home page-->
+        <link href="../static/css/sidenav.css" rel="stylesheet">    <!--home pae side nav-->
+        <link href="../static/css/common/header.css" rel="stylesheet">    <!-- common page header css -->
+
+
+    </head>
+    <body>
+
+
+             <!-- ======= sidenav ======= -->  
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="icofont-close-circled closebtn-icon "></i></a>
+                <a href="/home">Home</a>
+                <a href="/settings">Profile settings</a>
+                <a href="/settings">Add category</a>
+                <a href="/settings">Settings</a>
+            </div>
+            <!-- ======= sidenav  ends======= -->   
+
+
+        <!-- ==================================== Header not much changed other can be refrenced as always ============================================== -->
+        <header id="header" class="fixed-top">
+            <div class="container d-flex m-auto">
+
+                <div class="col-md-6 text-left">
+                    <h1 class="logo mr-auto">
+                        <span class="mr-2" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>    
+                        <a href="/">Organised-Chaos'</a>
+                    </h1>
+                </div>
+                <div class="col-md-5">
+                    <h5 class=" float-right scrollto mt-1 mr-2">
+                      Hi {{name}}
+                    </h5>
+                </div>
+                <div class="col-md-1">
+                    <a id="logout" class="btn btn-danger rounded mb-3 text-center" href="/logout">Logout</a>
+                </div> 
+
+            </div>
+        </header>
+
+        <!----================================== float button (used from home page both design) ==========================================--------->
+        <div id="floatButtons" class="floatButtons">
+            <a href="/" style="background-color: #444444; border: 1px solid #F4D03F;" class="animated1" id="searchTask">Home <i class="icofont-ui-home float-right h4"></i></a>
+            <a href="/searchTask" class=" animated2" id="searchTask">Search task <i class="icofont-ui-search float-right h4"></i></a>
+            <a href="/home#aise-hi-div2"  style="background-color: #444444; border: 1px solid #F4D03F;" class="animated3" id="">Categories <i class="icofont-label text-light float-right h4"></i></a>
+        </div>
+
+
+        <!----================================== main content holder for all setting and forms ==========================================--------->
+        <div class="container profile-container">
+                <div class="row">
+                    <div class="col-md-12">
+                           <!--====== this div was for flash message of actions but kept unused as of now ===========-->
+                    </div>    
+                </div> 
+                <div class="row">
+
+                    <div class="col-md-4 settings-nav-section">
+                        <div class="profile-logo">
+                            <img src="../static/img/setting/profilelogo.png" alt=""/>
+                        </div>
+                        <div class="user-details">
+                           <h4>{{ name }}</h4>
+                           <p style="hyphens: auto;" >{{email}}</p> <!--=====although hyphen not working======-->
+                        </div>
+                        <div class="profile-navs">
+                            <p>TODO LIST SETTINGS</p>
+                            <a href="javascript:void(0)" onclick="openAddCat()">Add category</a><br/>
+                            <a href="javascript:void(0)" onclick="openDeleteAll()">Delete All Tasks</a><br/>
+                            <p>Profile SETTINGS</p>
+                            <a href="javascript:void(0)" onclick="openChangeEmail()">Change email</a><br/>
+                            <a href="javascript:void(0)" onclick="openChangePassword()">Change password</a><br/>
+                        </div>
+                    </div>
+
+                    <!-- ======================== settings input part col-md-8 feels good =========================== -->
+                    <div class="col-md-8  setting-content-section">
+                         <!-- ======================== flash of all actions in below mentioned settings works fine =========================== -->
+                         {% with message = get_flashed_messages(with_categories=True) %}
+                         {%if message%}
+                         {% for category,message in message %}
+                             <div class="alert alert-{{category}}  alert-dismissible " style="margin-left:0px;margin-right: 0px;" id="addedFlash" role="alert">
+                             {{message}}
+                             <button type="button" class="close" onclick="closeFlash()" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                             </button>
+                             </div>
+                         {% endfor %}
+                         {% endif %}
+                         {%endwith%}
+                        <div id="addCatContent">
+                            <h4>Add category</h4>
+                            <p>Add a new one if required </p>
+                            <form action="/addNewCategory" method="POST" id="AddNewCat" class="AddNewCat">
+                                <input type="text" name ="newCatName" class="" placeholder ="Write category name here...."></input>
+                                <input type="submit" name ="submit" class="btn mb-2"></input>
+                            </form>
+                            <br>
+                            <h4 class="bolder"> Current Categories</h4> <!----===== categories can be deleted==========-->
+                            {% for cat in categories %}
+                            <h5 id="category{{cat}}">{{cat }} 
+                                <a href="javascript:void(0)" style="text-decoration: none;"  onclick="deleteCategory('{{cat}}')">
+                                    <i class="icofont-bin h5 text-danger "></i>
+                                </a>
+                            </h5>
+                            {% endfor %}
+                            
+                        </div>
+                        <div id="deleteAllTask">
+                            <h4>Delete Task</h4>
+                            <p>Are you sure you want to delete all your task . doing so will delete them permanently and after that no restoration 
+                                can be done so think twice before deleting </p>
+                            <br>
+                            <p>To delete all task at once type <span class="text-danger h5"> YES </span> in textarea below and then hit delete</p>    
+                            <form action="/deleteAllTask" method="POST" id="deleteTaskForm" class="DeleteTask">
+                                <input type="text" name ="deleteAllTask" class="" placeholder ="Type YES to delete..."></input>
+                                <input type="submit" name ="submit" class="btn mb-2"></input>
+                            </form>
+                        </div>
+                        <div id="changeEmail">
+                            <h4>Change Email</h4>
+                            <p>changing your email you will let you get task reminder to this new emailid , To change your email write new 
+                                email address and hit change.
+                            </p>
+                            <p>after this you will recieve a link to verify your new email click on that link to confirm your new emailid.
+                            </p>
+                            <br>
+                            <p>current email-id :  <span class="text-primary h6"> {{email}} </span></p>    
+                            <form action="/changeEmail" method="POST" id="changeEmailForm" class="changeEmail">
+                                <input type="text" name ="changeEmail" onkeyup="checkEmailExist()" id="changeEmailInput" placeholder ="Enter your new email..."></input>
+                                <input type="submit" name ="submit" id="changeEmailBtn" value="change" class="btn mb-2"></input>
+                            </form>
+                            <p id="emailError" style="display:none; color:red;margin: 5px;"></p>
+                        </div>
+                        <div id="changePassword">
+                            <h4>Change password</h4>
+                            <p>current email-id you are linked to: <span class="text-primary h6"> {{email}} </span></p>    
+                            <form action="/changePassword" method="POST" id="changePasswordForm" class="changePassword">
+                                <input type="text" name ="oldPassword" id="oldPassword" placeholder ="enter old password..."></input>
+                                <input type="text" name ="newPassword" id="newPassword" placeholder ="enter new password..."></input>
+                                <input type="submit" name ="submit" value="change" class="btn mb-2"></input>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+        
+
+        <!-- ============================================================ scripts ==================================================== -->
+        <!-- ===============side nav scripts================= -->
+  
+        <script>
+            function openNav() {
+            
+                if(document.getElementById("mySidenav").style.width == "250px")
+                {
+                closeNav();
+                }
+                else
+                {
+                document.getElementById("floatButtons").style.display = "none"
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("header").style.marginLeft = "250px";
+                }
+            }
+            
+            function closeNav() {
+                document.getElementById("floatButtons").style.display = "block"
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("header").style.marginLeft = "0";
+            }
+            </script>    
+  
+
+        <!--================================= open dropdown of header ================================-->
+        <script>
+            function openDropdown()
+            {
+                dropdown = document.getElementById("dropdown-items-profile");
+                if(dropdown.style.display == "block")
+                    dropdown.style.display ="none";
+                else
+                    dropdown.style.display = "block";
+            }
+        </script>
+
+        <!--================================= toggle content of setting col-m-8 from nav section ================================-->
+        <script>
+            function openAddCat()
+            {
+                document.getElementById("addCatContent").style.display="block";
+                document.getElementById("deleteAllTask").style.display="none";
+                document.getElementById("changeEmail").style.display="none";
+                document.getElementById("changePassword").style.display="none";
+            }
+            function openDeleteAll()
+            {
+                document.getElementById("addCatContent").style.display="none";
+                document.getElementById("deleteAllTask").style.display="block";
+                document.getElementById("changeEmail").style.display="none";
+                document.getElementById("changePassword").style.display="none";
+            }
+            function openChangeEmail()
+            {
+                document.getElementById("addCatContent").style.display="none";
+                document.getElementById("deleteAllTask").style.display="none";
+                document.getElementById("changeEmail").style.display="block";
+                document.getElementById("changePassword").style.display="none";
+            }
+            function openChangePassword()
+            {
+                document.getElementById("addCatContent").style.display="none";
+                document.getElementById("deleteAllTask").style.display="none";
+                document.getElementById("changeEmail").style.display="none";
+                document.getElementById("changePassword").style.display="block";
+            }
+        </script>
+
+        <!--================================= delete category in all category ================================-->
+        <script>
+            function deleteCategory(catName)
+            {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "/deleteCategory/"+ catName;
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var deleteStatus = JSON.parse(this.responseText);
+                    if(deleteStatus.status == "yes")
+                    {
+                        document.getElementById("category"+catName).style.display="none";
+                    }
+
+                }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
+        </script>
+
+        <!--====================== script to check if email exist or not  ===========================-->
+        <script>
+            var xmlhttp = new XMLHttpRequest();
+           
+            function checkEmailExist()
+            {
+                var status={'exist':'no'}
+                
+                var url = "/checkEmailExist/"+ document.getElementById('changeEmailInput').value;
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        status = JSON.parse(this.responseText);
+                        showdata(status);
+                    }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
+            function showdata(status)
+            {
+                console.log(status)
+                console.log(status.exist)
+                if(status.exist == 'yes')
+                {
+                    document.getElementById("emailError").innerHTML="* email already Exist, try another one";
+                    document.getElementById("emailError").style.display="block";
+                    //disabling btn
+                    document.getElementById("changeEmailBtn").disabled = true;
+                    document.getElementById("changeEmailBtn").style.backgroundColor = '#BFBFBF';
+                    document.getElementById("changeEmailBtn").style.cursor="not-allowed";
+                }
+                else
+                {
+                    console.log("here")
+                    document.getElementById("emailError").style.display="none";
+                    //enabling btn
+                    document.getElementById("changeEmailBtn").disabled = false;
+                    document.getElementById("changeEmailBtn").style.backgroundColor = "rgb(54, 158, 228)";
+                    document.getElementById("changeEmailBtn").style.cursor="pointer";
+                }
+            }
+        </script>
+
+
+    </body>
+</html>
+    
+    
+    

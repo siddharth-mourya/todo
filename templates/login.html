@@ -1,0 +1,260 @@
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="../static/img/tab-icon.png" />
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!--  bootstrap script/CSS Files -->
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- Vendor CSS Files -->
+        <link href="../static/vendor/icofont/icofont.min.css" rel="stylesheet">
+
+        <!-- local css files -->
+        <link href="../static/css/login/login.css" rel="stylesheet">
+
+    </head>
+    
+    <body>
+        <!-- ======================= Header different for login  ======================== -->
+        <header id="header" class="fixed-top">
+            <div class="container d-flex ">
+
+                <div class="col-md-8">
+                    <h1 class="logo mr-auto">
+                        <a href="index.html">Organised-Chaos'</a>
+                    </h1>
+                </div>
+            
+                <div class="col-md-4 text-center">  
+                   
+                </div>  
+
+            </div>
+        </header>
+
+        <!-- =========================side vaala rocket animation===============-->
+        <div id="login-animation">
+            <img src="../static/img/login/rocket.png" class="login-animation-img">
+        </div>
+
+        <!--==========================login/register form ===============================-->
+        <div class="container login-container">
+                    <div class="row login-box">
+
+                        <div class="col-md-2 "></div>
+                        <div class="col-md-3 login-black"></div>
+                        <div class="col-md-6 login-form-2">
+
+
+                            <div class="login-logo">
+                                <img src="../static/img/rocketlogo.jpg" alt=""/>
+                            </div>
+                            
+        <!--==========================login form ===============================-->
+
+                            <div id="login-form-tab">  
+                                {% with message = get_flashed_messages(with_categories=True) %}
+                                {%if message%}
+                                {% for category,message in message %}
+                                    <div class="alert alert-{{category}} alert-dismissible " id="flashMessage" role="alert">
+                                      {{message}}
+                                        <button type="button" class="close" onclick="closeFlash()" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                                {% endif %}
+                                {%endwith%}
+
+                                <h3>Login</h3>  
+                                <form action="/login" method="POST">
+                                    <div class="form-group">
+                                        <input type="text" onkeyup="loginForm()" id="loginemail" name="email" class="form-control" placeholder="Your Email *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" onkeyup="loginForm()" id="loginpassword" name="password" class="form-control" placeholder="Your Password *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" id="loginBtn" style="cursor: not-allowed;" class="btnSubmit" value="Login"  />
+                                    </div>
+                                </form>
+                                <button onclick="regBtnClick()" class="reg-btn btn float-right shadow rounded-pill">Register Here</button>
+                            </div>    
+
+        <!--==========================register form ===============================-->
+
+                            <div id="register-form-tab">   
+                                
+                                <h3>Register </h3> 
+                                <form action="/register" method="POST">
+                                    <div class="form-group">
+                                        <input type="text"  onkeyup="registerForm()"  id="name" name="name" class="form-control" placeholder="Your Name please..." value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" onkeyup="registerForm()" id="email" name="email" onchange="checkEmailExist()" class="form-control" placeholder="Your email *" value="" />
+                                    </div>
+                                    <p id="emailError" style="display:none; color:red;margin: 5px;"></p>
+                                    <p id="emailServerError" style="display:none; color:red;margin: 5px;"></p>
+                                    <div class="form-group">
+                                        <input type="password" onkeyup="registerForm()" id="password" name="password" class="form-control" placeholder="New Password *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" onkeyup="registerForm()" id="phone" name="phone" class="form-control" placeholder="Your phone *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" id="submitBtn" class="btnSubmit" value="Submit" style="cursor: not-allowed;"/>
+                                    </div>
+                                </form>
+                                <button onclick="loginBtnClick()" class="btn btn-primary float-right shadow rounded-pill">Login here</button>
+                            </div>  
+
+                        </div>
+                    </div>
+        </div>
+
+                
+        <!--====================== script to toggle between reg and login form  ===========================-->
+        <script>
+
+            function regBtnClick()
+            {
+                document.getElementById("login-form-tab").style.display="none";
+                document.getElementById("register-form-tab").style.display="block";
+                
+            }
+            function loginBtnClick()
+            {
+                document.getElementById("register-form-tab").style.display="none";
+                document.getElementById("login-form-tab").style.display="block"; 
+            }
+
+        </script>
+        
+        <!--====================== script to close flash msg of email already exist  ===========================-->
+        <script>
+            function closeFlash()
+            {
+                document.getElementById("flashMessage").style.display="none";
+            }
+        </script>
+
+        <!--====================== script to check if email exist or not in db  ===========================-->
+        <script>
+            var xmlhttp = new XMLHttpRequest();
+           
+            function checkEmailExist()
+            {
+                var status={'exist':'no'}
+                if(document.getElementById('email').value=="")  // if their is no email value in there
+                {
+                    showdata(status)
+                }
+                else       // if their is some email value in there
+                {
+                    var url = "/checkEmailExist/"+ document.getElementById('email').value;
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            status = JSON.parse(this.responseText);
+                            showdata(status);
+                        }
+                    };
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+                }
+            }
+            function showdata(status)
+            {
+                console.log(status)
+                console.log(status.exist)
+                if(status.exist == 'yes' )
+                {
+                    document.getElementById("emailError").innerHTML="*email already exist";
+                    document.getElementById("emailError").style.display="block";
+                    //disabling btn
+                    document.getElementById("submitBtn").disabled = true;
+                    document.getElementById("submitBtn").style.backgroundColor = '#BFBFBF';
+                    document.getElementById("submitBtn").style.cursor="not-allowed";
+                }
+                else
+                {
+                    document.getElementById("emailError").innerHTML="";
+                    document.getElementById("emailError").style.display="none";
+                    //enabling btn
+                    document.getElementById("submitBtn").disabled = false;
+                    document.getElementById("submitBtn").style.backgroundColor = '#fff';
+                    document.getElementById("submitBtn").style.cursor="pointer";
+                }
+                if(status.EmailServerExist == 'no' )
+                {
+                    document.getElementById("emailServerError").style.display="block";
+                    document.getElementById("emailServerError").innerHTML="*email invalid, try correct one";
+                    //disabling btn
+                    document.getElementById("submitBtn").disabled = true;
+                    document.getElementById("submitBtn").style.backgroundColor = '#BFBFBF';
+                    document.getElementById("submitBtn").style.cursor="not-allowed";
+                }
+                else{
+                    document.getElementById("emailServerError").style.display="none";
+                    document.getElementById("emailServerError").innerHTML="";
+                   //enabling btn
+                   document.getElementById("submitBtn").disabled = false;
+                    document.getElementById("submitBtn").style.backgroundColor = '#fff';
+                    document.getElementById("submitBtn").style.cursor="pointer";
+                }
+            }
+        </script>
+
+        
+        <!--====================== script to feild are filled or not  ===========================-->
+        <script>
+            // register part
+            function registerForm()
+            {
+                email= document.getElementById("email").value;
+                name = document.getElementById("name").value;
+                phone =  document.getElementById("phone").value;
+                password =  document.getElementById("password").value;
+                if(email=="" || name == "" || phone=="" || password=="")
+                {
+                    console.log("in disable of re")
+                    document.getElementById("submitBtn").disabled = true;
+                    document.getElementById("submitBtn").style.cursor="not-allowed";
+                }
+                else{
+                    console.log("in enbale of reg")
+                    document.getElementById("submitBtn").disabled = false;
+                    document.getElementById("submitBtn").style.cursor="pointer";
+                }
+            }
+            // login part
+            function loginForm()
+            {
+                loginemail = document.getElementById("loginemail").value;
+                loginpassword =  document.getElementById("loginpassword").value;
+                if(loginemail=="" || loginpassword=="")
+                {
+                    
+                    document.getElementById("loginBtn").disabled = true;
+                    document.getElementById("loginBtn").style.cursor="not-allowed";
+                }
+                else{
+                   
+                    document.getElementById("loginBtn").disabled = false;
+                    document.getElementById("loginBtn").style.cursor="pointer";
+                }
+            }
+        </script>
+
+
+    </body>
+<html>

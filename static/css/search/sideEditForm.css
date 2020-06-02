@@ -1,0 +1,138 @@
+/*--------------------------------------------------------------
+# editing task right side collapsable box css
+--------------------------------------------------------------*/
+
+.editTask {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 11;
+    top: 0;
+    right: 0;
+    background: #363635;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 6%;
+  }
+  
+  .editTask  p{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  .editTask .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .closebtn-icon
+  {
+    color:#e45;
+    font-size: 30px;
+  }
+  .editTask .closebtn-icon:hover
+  {
+    font-size: 35px;
+  
+  }
+  
+  @media screen and (max-height: 450px) {
+    .editTask {padding-top: 15px;}
+    .editTask a {font-size: 18px;}
+  }
+
+/* task display section */
+      .task-display
+      {
+          
+          overflow-x: hidden;
+          padding: 20px;
+          color: aliceblue;
+          background-color: #363636;  
+          height: 100%;
+          border-bottom: 5px solid #747373 ;
+      }
+      .task-display a
+      {
+          color:#206bfb;
+      }.task-display a:hover
+      {
+          color:#fff;
+      }
+  
+          /* ---------- task display section ------------*/
+          .task-display-section
+          {
+              display: block;
+          }
+          #display-description
+          {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+             hyphens: auto;
+          }
+          #display-description-div
+          {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+             hyphens: auto;
+          }
+  
+              /* -------image list=----------- */
+              .task-display-image
+              {
+                  
+              }
+              img.zoom:hover {
+                  transition: transform 0.5s;
+                  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+                  }
+  
+                  /* -----------dustbin icon in image ----------- */
+                  .bin-in-image
+                  {
+                      z-index: 1;
+                      position:absolute;
+                      bottom: 10;
+                      right: 10;
+                      padding: 2px;
+                      border-radius: 3px;
+                      background-color: rgba(0, 0, 0);
+                  }
+                  .task-display-heading
+                  {
+                     margin-left: -40px; 
+                  }
+          
+          /* ---------- task edit section ------------*/
+          .task-edit-section
+          {
+              margin-top: -10px;
+              display: none;
+          }
+  
+              /* ---------- task edit input form section ------------*/
+              .task-edit-input {
+                  padding-left: 5px;
+                  outline: 0;
+                  background-color:#363635 ;
+                  border-width: 0 0 2px;
+                  color: rgb(199, 199, 199);
+                  border-color: rgb(204, 204, 204);
+                  }
+              .task-edit-input:focus {
+                   color:white;
+              }
+              .input-col
+              {
+                  padding-top: -5px;
+                  padding-left: 40px;
+              }
+  
+          

@@ -1,0 +1,263 @@
+body{
+    background-color: rgb(71, 72, 73);
+}
+a:hover {
+    text-decoration: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+/*--------------------------------------------------------------
+# scroll bar design
+--------------------------------------------------------------*/
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #F4D03F; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
+
+/*--------------------------------------------------------------
+# floating side nav buttons
+--------------------------------------------------------------*/
+
+#floatButtons > a {
+    position: fixed;
+    left: -100px;
+    transition: 0.3s;
+    padding: 15px;
+    z-index: 6;
+    width: 150px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    }
+    
+    #floatButtons > a:hover {
+    left: 0;
+    transition: 0.5s;
+    }
+    
+    .animated1 {
+    top: 30%;
+    background-color:#F4D03F;
+    border: 1px solid #444444;
+    border-radius: 5px;
+    }
+    
+    .animated2 {
+    top: 40%;
+    background-color: #444444;
+    border: 1px solid #F4D03F;
+    border-radius: 5px;
+    }
+    
+    .animated3 {
+    top: 50%;
+    background-color: #F4D03F;
+    border: 1px solid #444444;
+    border-radius: 5px;
+    }
+    
+    
+    
+    .animated1 {
+    animation: right-left 1s ease-in-out infinite alternate-reverse both;
+    }
+    .animated2 {
+    animation: right-left 0.9s ease-in-out infinite alternate-reverse both;
+    }
+    .animated3 {
+    animation: right-left 1.2s ease-in-out infinite alternate-reverse both;
+    }
+    
+    @-webkit-keyframes right-left {
+    0% {
+    transform: translateX(10px);
+    }
+    100% {
+    transform: translateX(-10px);
+    }
+    }
+    
+    @keyframes right-left {
+    0% {
+    transform: translateX(10px);
+    }
+    100% {
+    transform: translateX(-10px);
+    }
+  }
+/*--------------------------------------------------------------
+# search /filter section css
+--------------------------------------------------------------*/
+
+.search-sec{
+        background: rgb(71, 72, 73);
+        padding: 2rem;
+        margin-top: 70px;
+    }
+    .searchBox
+    {
+        width:101%;
+        padding: 11px;
+    }
+    .search-slt{
+        display: block;
+        width: 100%;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: #55595c;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        height: calc(3rem + 2px) !important;
+        border-radius:0;
+    }
+    .search-btn{
+        width: 100%;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: #f4d03f;
+        text-transform: capitalize;
+        height: calc(3rem + 2px) !important;
+        border-radius:0;
+    }
+    .date
+    {
+        padding:12px
+    }    
+
+    .animated-heading
+    {
+      font-size: 20px;
+      color:rgb(0, 183, 255) ;
+      animation: font-change 3s alternate-reverse infinite both;
+    }
+    @-webkit-keyframes font-change {
+        0% {
+          color:rgb(0, 183, 255) ;
+        }
+        100% {
+          color:#F4D03F ; 
+        }
+   }
+      
+    @keyframes font-change {
+      0% {
+        color:rgb(0, 183, 255) ;
+      }
+      100% {
+        color:#F4D03F ; 
+      }
+    }
+/*--------------------------------------------------------------
+taskdisplay css
+--------------------------------------------------------------*/
+    .task-collection
+    {
+        padding-top: 20px;  
+        background-color:#F4D03F;  
+        height: 100%;
+        overflow-y: scroll;
+    } 
+
+    
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+    ul.timeline:before {
+        content: ' ';
+        background: #d4d9df;
+        display: inline-block;
+        position: absolute;
+        left: 29px;
+        width: 2px;
+        height: 100%;
+    }
+    ul.timeline > li {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+    ul.timeline > li > a:nth-child(1){
+        color:rgb(255, 255, 255);
+        font-weight: bold;
+        display: inline;
+        font-size: large;
+    }
+    ul.timeline > li > p:nth-child(odd){
+        color: #fdfdfd ;
+    }
+    ul.timeline > li > p:nth-child(even){
+        color: #f4d03f ;
+    }
+    ul.timeline > li > a:nth-child(1):hover{
+        color:rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    ul.timeline > li:before {
+        content: ' ';
+        background: white;
+        display: inline-block;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid #000;
+        left: 20px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .task-title{
+        font-size: 18px;
+        color: rgb(0, 255, 243) ;
+    }
+    .task-title:hover{
+      color: #f4d03f ;
+  }
+
+ /*----------------------------------------------
+ scroll top btn
+ --------------------------------------------------*/
+
+ #topBtn {
+    display: none;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background-color: #07d4f8;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius:50%;
+  }
+  
+  #topBtn:hover {
+    color: white;  
+    background-color: rgb(27, 60, 248); /* Add a dark-grey background on hover */
+  }
+
+
+
+  

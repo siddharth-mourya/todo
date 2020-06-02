@@ -1,0 +1,181 @@
+/*--------------------------------------------------------------
+# scroll bar design for slider
+--------------------------------------------------------------*/
+
+
+/* width */
+div.card-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  div.card-container::-webkit-scrollbar-track {
+    background: #bdbaba; 
+  }
+   /* Handle */
+div.card-container::-webkit-scrollbar-thumb {
+    background: #F4D03F;
+  }
+  
+  /* Handle on hover */
+  div.card-container::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
+
+/*============ swiper js size ===============*/
+.swiper-container {
+    width: 90%;
+    height: 80%;
+  }
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    height: auto;
+    width:70%;
+  }
+  
+  .card-container
+  {
+    
+    border-radius: 40px  0px  0px 40px;
+     height: 550px;
+    padding:5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #F4D03F;
+  }
+  
+  .category-in-card
+  {
+    padding: 5px;
+    font-size: 25px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    text-underline-position: below;
+  }
+  
+  
+  .card-container hr
+  {
+    height:2px;
+    border-width:0;
+    color:gray;
+    background-color:white;
+  }
+  
+  .card-holder
+  {
+    padding-bottom: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .task
+  {
+    font-weight: bold;
+    background-color: #F1F1EF;
+    margin-bottom: 4px;
+  }
+  .status
+  {
+    margin-bottom: 8px;
+    margin-top: -8px;
+    margin-left: 2px;
+    border-left:25px solid #e45;
+    
+    color: #e45;
+  }
+  .task-date
+  {
+    text-align: center;
+  }
+  .task-title 
+  {
+    color:#444444;
+  }
+  .task-title:hover
+  {
+   
+    color: #3484ec;
+  }
+
+  .tick-circle-icon > a 
+  {
+    
+  }
+  
+  @media (max-width: 768px) {
+    .status{
+          margin-left: 8px;
+          margin-right: 8px;
+          border-top: 15px solid #e45;
+          border-left: 0px;
+          border-radius: 3px;
+          color: #e45;
+          }
+          .swiper-container
+          {
+            width: 100%;
+          }
+          .card-holder
+        {
+          padding-bottom: 50px;
+          padding-left: 60px;
+          padding-right: 60px;
+        }
+        .card-holder
+        {
+          padding-bottom: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+  }
+  @media (max-width: 575px) {
+    .status{
+          margin-left: 8px;
+          margin-right: 8px;
+          border-top: 15px solid #e45;
+          border-left: 0px;
+          border-radius: 3px;
+          color: #e45;
+          }
+          .swiper-container
+          {
+            width: 100%;
+          }
+          .card-holder
+        {
+          padding-bottom: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+  }
+  .delete-icon .task-icon
+  {
+    color:#e45;
+  }
+  .delete-icon .task-icon:hover
+  {
+    color:Red;
+  }
+  .task-icon:hover
+  {
+    color:black
+    
+  }
+/*--------------------------------------------------------------
+# heading above slider 
+--------------------------------------------------------------*/
+
+
+.heading-category
+{
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+
+.filter-link > a:hover{
+  color:#3e4450;
+}
+

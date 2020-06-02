@@ -1,0 +1,94 @@
+/*--------------------------------------------------------------
+# addFrom
+--------------------------------------------------------------*/
+
+.addTaskForm {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  right: 0;
+  background: #2b2c2b;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 6%;
+  border-radius:50px 0px 0px 50px;
+}
+
+.addTaskForm  p{
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.addTaskForm .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.closebtn-icon
+{
+  color:#e45;
+  font-size: 30px;
+}
+.addTaskForm .closebtn-icon:hover
+{
+  font-size: 35px;
+
+}
+
+
+/* ----------------- form tag css here ------------------*/
+.addTaskForm input[type=text], select {
+  width: 100%;
+  padding: 8px 8px 8px 15px;
+  display: block;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.addTaskForm textarea {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          width: 100%;
+}
+
+.addTaskForm form label
+{
+  color:white;
+}
+.addTaskForm input[type=submit]  {
+  width: 50%;
+  background-color: #4CAF50;
+  color: white;
+  margin-top: 20px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addTaskForm input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.comment
+{
+  border-radius: 15px;
+}
+
+
+@media screen and (max-height: 450px) {
+  .addTaskForm {padding-top: 15px;}
+  .addTaskForm a {font-size: 18px;}
+}

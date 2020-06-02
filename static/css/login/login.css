@@ -1,0 +1,212 @@
+/*======= general styling ========*/
+
+
+html{
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+  }
+  
+  a {
+    color: #14c871;
+  }
+  
+  a:hover {
+    color: #206bfb;
+    text-decoration: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  
+  /*--------------------------------------------------------------
+  # Header
+  --------------------------------------------------------------*/
+  #header {
+    background: #fff;
+    transition: all 0.5s;
+    padding: 20px 0;
+  }
+  
+  #header.header-scrolled {
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+  }
+  
+  #header .logo {
+    font-size: 32px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  
+  #header .logo a {
+    color: #5f687b;
+  }
+  
+  
+  /*------------------------------------------------------
+  rocket animation
+  ---------------------------------------------------------*/
+  .login-animation-img
+  {
+    position:fixed;
+    top:50%;
+    left:0;
+    width: 200px;
+    transform: rotate(-180deg);
+    height: 150px;
+    animation : fly 7s ease infinite both;
+  }
+  @-webkit-keyframes fly {
+    0% {
+      transform: translateX(0%) translateY(-100%);
+      }  
+    100%{
+      transform: translateX(500%) translateY(100%) rotate(360deg);
+      }
+    }
+    
+  @keyframes fly {
+    0% {
+      transform: translateY(200%);
+      } 
+    100%{
+      transform: translateY(-300%);
+      }
+   }
+  
+  /*================ login screen ===================*/
+  
+
+
+  
+  .login-container{
+      margin-top: 7%;
+      margin-bottom: 7%;
+  }
+  .login-logo{
+      position: relative;
+      margin-left: -41.5%;
+  }
+  .login-logo img{
+      position: absolute;
+      width: 20%;
+      margin-top: 19%;
+      background: #282726;
+      border-radius: 4.5rem;
+      padding: 3%;
+  }
+  .login-black{
+      padding: 9%;
+      background:#282726;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #login-form-tab
+  {
+   
+    display: block;
+  }
+  #register-form-tab
+  {
+    display: none;
+  }
+
+  .login-black h3{
+      text-align: center;
+      margin-bottom:12%;
+      color:#fff;
+  }
+  .login-form-2{
+      padding: 9%;
+      background: #F4D03F;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+  .login-form-2 h3{
+      text-align: center;
+      margin-bottom:12%;
+      color: #fff;
+  }
+  .btnSubmit{
+      font-weight: 600;
+      width: 50%;
+      color: #282726;
+      background-color: #fff;
+      border: none;
+      border-radius: 1.5rem;
+      padding:2%;
+  }
+  .btnForgetPwd{
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+  }
+  .btnForgetPwd:hover{
+      text-decoration:none;
+      color:rgb(3, 3, 3);
+  }
+  
+  .reg-btn
+  {
+    background-color: rgb(0, 217, 255);
+  }
+  .reg-btn:hover
+  {
+    background-color: rgb(153, 240, 255);
+  }
+  
+  
+  
+  @media (max-width: 991px) {
+    #header {
+      padding: 12px 0;
+    }
+
+  }
+  @media (max-width: 768px) {
+  
+    .login-container{
+      margin-top: 10%;
+      margin-bottom: 10%;
+      margin-left: 5%;
+      margin-right: -20%;
+    }
+
+    .login-logo img{
+      position: relative;
+      margin-top: -10%;
+      left:58%;
+      width: 15%;
+      border-radius: 3.5rem;
+      padding: 3%;
+    }
+    .login-form-2{
+      padding-top:0%;
+      padding-bottom:9%;
+      padding-right:9%;
+      padding-left:9%;
+    }
+  }
+  
+  
+  @media (max-width: 575px) {
+  
+    .login-container{
+      margin-top: 30%;
+      margin-bottom: 10%;
+      margin-left: 5%;
+      margin-right:-20%;
+    }
+  
+  }

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MY TODO</title>
+
+  <link rel="shortcut icon" type="image/png" href="../static/img/tab-icon.png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+  <!--  bootstrap script/CSS Files -->
+        
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+                        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+                        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Vendor icofont CSS Files -->
+  <link href="../static/vendor/icofont/icofont.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../static/css/swiper.min.css">
+  <link href="../static/css/style.css" rel="stylesheet">
+  <link href="../static/css/myswiper.css" rel="stylesheet">
+  <link href="../static/css/sidenav.css" rel="stylesheet">
+  <link href="../static/css/adjacentDay.css" rel="stylesheet">
+  <link href="../static/css/addForm.css" rel="stylesheet">
+  <link href="../static/css/floatButtons.css" rel="stylesheet">
+  <link href="../static/css/front-main.css" rel="stylesheet">
+  <!---header dont have commoncss in this -->
+
+  <style>
+   
+  </style>  
+
+</head>
+
+<body>
+
+  <!-- ======= sidenav ======= -->  
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="icofont-close-circled closebtn-icon "></i></a>
+    <a href="/settings">Profile settings</a>
+    <a href="/settings">Add category</a>
+    <a href="/searchTask">Search <i class="icofont-ui-search h4"></i></a>
+    <a href="/settings">Settings</a>
+  </div>
+   
+   <!-- ============================================= addNewTask form ================================================== -->  
+   <div id="addTaskForm" class="addTaskForm">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeForm()"><i class="icofont-close-circled closebtn-icon "></i></a>
+    <form action="/addTask" method="POST" enctype="multipart/form-data">
+      <label for="title">Task Title <span class="text-warning">*</span></label>
+      <input type="text" class="rounded-pill" id="title" onkeyup="addTaskFormValid(1)" name="title" placeholder="Task you wanna add...">
+
+      <label for="category">Category </label>
+      <select id="category" class="rounded-pill"  name="category">
+        <option value="Select Category">Select Category</option>
+        {% for category in userCatList %}
+        <option value="{{category}}">{{category}}</option>
+        {% endfor %}
+      </select>
+
+      <label for="date">date <span class="text-warning">*</span></label>
+      <div class=""> 
+        <input type="date"  onchange="addTaskFormValid(2)" class="task-edit-input date form-control btn rounded-pill" id="date" name="date" placeholder="">
+        <p id="dateSmallError" class="text-warning" style="font-size: 16px;margin-left: -5%; margin-bottom: -5%; display:none; ">* date should above today's date</p>
+      </div>
+
+      <label for="title">Upload photos</label>
+     <div class="bg-light rounded-pill ">
+         <input type="file" class="btn  mb-1" name="files[]" multiple>
+     </div>
+    
+      <label for="comment">description</label>
+      <textarea class="comment pt-2 pl-3" name="description" placeholder="Description about task..." type="text" id="comment" rows="5"  ></textarea>
+
+      <input type="submit" id="addTaskBtn" class="btn rounded-pill " style="cursor: not-allowed;" value="Add Task">
+    </form>
+  </div>
+
+
+
+ 
+
+
+
+  <div id="elseSidenav">
+
+          <!-- ======= Header ======= -->
+          <header id="header" class="fixed-top">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 class="logo mr-auto">
+                    <span class="mr-2" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                    <a href="/">Organised-Chaos'</a>
+                  </h1>
+                </div>
+                
+                <div class="col-md-5">
+                  <h5 class=" float-right scrollto mt-1 mr-2">
+                    Hi {{name}}
+                  </h5>
+                </div>
+                <div class="col-md-1 text-right float-right">
+                  <a id="logout" class="btn btn-danger rounded mb-3 text-center" href="/logout">Logout</a>
+                </div>  
+              </div>
+            </div>
+          </header>
+
+
+          <!----================================== front main holding addTask and searchTask buttons section ==========================================--------->
+          <section id="front-main" class="d-flex align-items-center">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                  <h1>This is a todo list app for your easiness </h1>
+                  <h2>Now don't remember, just hit add task and voila you're done</h2>
+                  <div class="d-flex">
+                    <a href="javascript:void(0)" onclick="openForm()" class="btn-addTask scrollto">add Task</a>
+                    <a href="/searchTask" class="btn-search-task ml-4 scrollto">Search / Filter Task
+                      <i class="icofont-ui-search h4"></i>
+                    </a>
+                  </div>
+                  <br>
+                  <h5>To filter tasks using keywords , dates , category(label) click on above 
+                    <span class="text-danger"> Search/Filter Task button</span>
+                  </h5>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 bounce-img">
+                  <img src="../static/img/taskicon3.jpg" class="img-fluid animated" alt="">
+                </div>
+              </div>
+              <div id="aise-hi-div" class=" using-this-to-place-adjdays"></div>
+         
+            </div>
+
+          </section>
+          
+          <!----================================== floats button to search task and setting.....  ==========================================--------->
+          <div id="floatButtons" class="floatButtons">
+            <a href="/searchTask" class=" text-dark animated1" id="searchTask">Search task <i class="icofont-ui-search float-right h4"></i></a>
+            <a href="#aise-hi-div2" class="animated2" id="">Categories <i class="icofont-label text-light float-right h4"></i></a>
+            <a href="#aise-hi-div" class="text-dark animated3" id="">Daily Tasks <i class="icofont-tasks text-dark float-right h4"></i></a>
+            <a href="/settings" class="animated4" id="searchcatnav">Settings<i class="icofont-ui-settings float-right h4"></i></a>
+          </div>
+
+          <!-- ======================== flash of new task uploaded sucessfully =========================== -->
+          {% with message = get_flashed_messages(with_categories=True) %}
+            {%if message%}
+              {% for category,message in message %}
+                <div class="alert alert-{{category}}  alert-dismissible " style="margin-left:50px;margin-right: 50px; margin-top: 20px;margin-bottom: -20px;" id="addedFlash" role="alert">
+                  {{message}}
+                  <button type="button" class="close" onclick="closeFlash()" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {%endwith%}
+          
+          <!-- ========================== adjacent-days section holding todolist of yesterday today tommorow ================================ -->
+          <section id="adjacent-days" class="adjacent-days">
+            <div class="container">
+              <div class="row">
+
+                <div class="col-lg-4 ">
+                  <div class="task-box">
+
+                    <div class="task-adj-heading">
+                      <h4 ><a  href="">Yesterday</a></h4>
+                    </div>
+                    {% if adjData[0] %}
+                      {% for data in adjData[0] %}
+                          {% set rowId = data[0] %}
+                          <div id="{{rowId}}" class="row each-task-row">   <!-- id set to diaplay none task when deleted-->
+                            <div class="col-md-3 text-center">
+                              {% set taskId = data[0] %}
+                              {% if data[7] == "no" %}
+                              <a href="javascript:void(0)" id="circle{{rowId}}" style="color:rgb(148, 148, 148);" onclick="taskDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                              {% endif %} 
+                              {% if data[7] == "yes" %}
+                              <a href="javascript:void(0)" id="circle{{rowId}}" style="color:#1e6;" onclick="taskNotDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                              {% endif %} 
+                              <a href="javascript:void(0)" onclick="deleteTask({{taskId,rowId}})"><i class="icofont-bin task-icon h5 text-danger "></i></a>
+                            </div>
+                            <div class="col-md-8 ">
+                              <p class="description">{{data[2]}}</p>
+                            </div>
+                          </div>
+                          <hr id="hr{{rowId}}" class="hr-50">
+                      {% endfor %}
+                    {% else %}
+                      <h5 style="justify-content:center;padding:20px;margin-top:15%;">NO task for pending from yesterday <i class="icofont-laughing task-icon h4 text-warning "></i></h5>
+                    {% endif %}
+                     
+                  </div>
+                  
+                </div>
+
+                <div class="col-lg-4 ">
+                  <div class="task-box">
+
+                    <div class="task-adj-heading  ">
+                      <h4 ><a  href="">Today</a></h4>
+                    </div>
+
+                    {% if adjData[1] %}
+                      {% for data in adjData[1] %}
+                      {% set rowId = data[0] %}
+                      <div id="{{rowId}}" class="row each-task-row">   <!-- id set to diaplay none task when deleted-->
+                        <div class="col-md-3 text-center">
+                          {% set taskId = data[0] %}
+                          {% if data[7] == "no" %}
+                          <a href="javascript:void(0)" id="circle{{rowId}}" style="color:rgb(148, 148, 148);" onclick="taskDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                          {% endif %} 
+                          {% if data[7] == "yes" %}
+                          <a href="javascript:void(0)" id="circle{{rowId}}" style="color:#1e6;"  onclick="taskNotDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                          {% endif %} 
+                          <a href="javascript:void(0)" onclick="deleteTask({{taskId,rowId}})"><i class="icofont-bin task-icon h5 text-danger "></i></a>
+                        </div>
+                        <div class="col-md-8 ">
+                          <p class="description">{{data[2]}}</p>
+                        </div>
+                      </div>
+                      <hr id="hr{{rowId}}" class="hr-50">
+                      {% endfor %}
+                    {% else %}
+                      <h5 style="justify-content:center;padding:20px;margin-top:15%;">Noo task today to do, add some <i class="icofont-simple-smile task-icon h4 text-warning "></i></h5>
+                    {% endif %}  
+                   
+
+                  </div>
+                  
+                </div>
+
+                <div class="col-lg-4 ">
+                  <div class="task-box">
+
+                    <div class="task-adj-heading  ">
+                      <h4 ><a  href="">Tommorow</a></h4>
+                    </div>
+
+                    {% if adjData[2] %}  
+                      {% for data in adjData[2] %}
+                      {% set rowId = data[0] %}
+                      <div id="{{rowId}}" class="row each-task-row">   <!-- id set to diaplay none task when deleted-->
+                        <div class="col-md-3 text-center">
+                          {% set taskId = data[0] %}
+                          {% if data[7] == "no" %}
+                          <a href="javascript:void(0)" id="circle{{rowId}}" style="color:rgb(148, 148, 148);" onclick="taskDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                          {% endif %} 
+                          {% if data[7] == "yes" %}
+                          <a href="javascript:void(0)" id="circle{{rowId}}" style="color:#1e6;" onclick="taskNotDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                          {% endif %} 
+                          <a href="javascript:void(0)" onclick="deleteTask({{taskId,rowId}})"><i class="icofont-bin task-icon h5 text-danger "></i></a>
+                        </div>
+                        <div class="col-md-8 ">
+                          <p class="description">{{data[2]}}</p>
+                        </div>
+                      </div>
+                      <hr id="hr{{rowId}}" class="hr-50">
+                    {% endfor %}
+                    {% else %}
+                      <h5 style="justify-content:center;padding:20px;margin-top:15%;"> No Todo set for Tommorow, add some <i class="icofont-laughing task-icon h4 text-warning "></i></h5>
+                    {% endif %}  
+                   
+
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+            <div id="aise-hi-div2" class="nothing-just-place-div"></div>
+          </section>
+        
+           
+
+          <!-- ===============  heading of category slider with filter link ================= -->
+          
+          <section id="heading-todo" class="heading-todo p-3">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4 text-right">
+                      <h2 class="heading-category">
+                        Category
+                      </h2>
+                  </div>
+                  <div class="col-md-6 filter-link text-right pl-2 pt-2">
+                    <a href="/searchTask" class="text-primary filter-animation h5 scrollto mr-2"><i class="icofont-filter"></i> Filter Data</a>
+                  </div>
+                </div>
+              </div>
+          </section>
+          
+        
+          <!-- =============== task holding Slider with categories main container================= -->
+          <section id="card-holder" class="card-holder">
+          <div class="swiper-container">
+              <div class="swiper-wrapper">
+
+                     
+                
+
+                {% for category in userCatList %}
+                <div class="swiper-slide">
+                  <div class=" card-container container text-center pt-3 shadow  " style="padding-right: 0px ; padding-left: 0px ;">
+                   
+                    <h5 class="category-in-card text-light">{{category}}</h5>
+                    
+                    <hr><br>
+
+                      {% for data in catData %}
+                        {% if data[0][3] in category %}
+                        {% for cat in data %}
+                            
+                            {% set rowId = cat[0] %}
+                            {% set taskId = cat[0] %}
+                            <div id="Slider{{rowId}}" class="row task shadow bg-light pt-3 rounded">
+                              <div class="col-md-1 status">
+                              </div>
+                              <div class="col-md-6 text-md-left ">
+                                <a href="#" class=" task-title"><p class="">{{cat[2]}}</p></a>
+                              </div>
+                              <div class="col-md-2 task-date ">
+                                  <p>{{cat[4]}}</p>
+                              </div>
+                              <div class="col-md-1 delete-icon ">
+                                <a href="javascript:void(0)" onclick="deleteTask({{taskId,rowId}})"><i class="icofont-bin task-icon h3 text-danger "></i></a>
+                              </div>
+                              {% if cat[7] == "no" %}
+                              <div class="col-md-1  ">
+                              <a href="javascript:void(0)" id="circleSlider{{rowId}}" style="color:rgb(148, 148, 148);" onclick="taskDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                              </div>
+                              {% endif %} 
+                              {% if cat[7] == "yes" %}
+                              <div class="col-md-1 ">
+                              <a href="javascript:void(0)" id="circleSlider{{rowId}}" style="color:#1e6;" onclick="taskNotDone({{taskId}})"><i class="icofont-check-circled h5 "></i></a> 
+                              </div>
+                              {% endif %} 
+                            </div>
+                        {% endfor %}  
+                        {% endif %}
+                      {% endfor %}
+
+            
+                  </div>           
+                </div>
+                {% endfor %}
+            
+              
+              </div>
+              <!--  Pagination -->
+              <div class="swiper-pagination"></div>
+                  <!-- Arrows -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </section> 
+          <br><br>    
+
+         
+    </div>  
+
+
+    
+
+
+
+
+
+ <!-- =============== Slider scripts this library is imported and used for slider part ================= -->
+
+
+ <script src="../static/js/swiper.min.js"></script>
+   <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 5,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows : true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    swiper.slideTo(1,false,false);
+  </script>
+
+ <!-- ===============side nav scripts================= -->
+  
+  <script>
+  function openNav() {
+    
+      if(document.getElementById("mySidenav").style.width == "250px")
+      {
+        closeNav();
+      }
+      else
+      {
+        closeForm();
+        document.getElementById("floatButtons").style.display = "none"
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("elseSidenav").style.marginLeft = "250px";
+        document.getElementById("header").style.marginLeft = "250px";
+      }
+  }
+  
+  function closeNav() {
+    document.getElementById("floatButtons").style.display = "block"
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("header").style.marginLeft = "0";
+        document.getElementById("elseSidenav").style.marginLeft = "0";
+  }
+  </script>
+   
+
+  <!-- ===============side addTask scripts================= -->
+  
+  <script>
+    function openForm() {
+        closeNav();
+        document.getElementById("floatButtons").style.display = "none"
+        document.getElementById("addTaskForm").style.width = "300px";
+        document.getElementById("addTaskForm").style.paddingLeft="8px";
+        document.getElementById("addTaskForm").style.paddingRight="8px";
+        document.getElementById("elseSidenav").style.marginRight = "300px";
+        document.getElementById("header").style.marginRight = "300px";
+        document.getElementById("header").style.zIndex="10"; 
+    }
+    
+    function closeForm() {
+      document.getElementById("floatButtons").style.display = "block"
+        document.getElementById("addTaskForm").style.width = "0px";
+        document.getElementById("addTaskForm").style.paddingLeft="0px";
+        document.getElementById("addTaskForm").style.paddingRight="0px";
+        document.getElementById("header").style.marginRight = "0px";
+        document.getElementById("elseSidenav").style.marginRight = "0px";
+        document.getElementById("header").style.zIndex="1030"; 
+    }
+    </script>
+       
+
+
+<!--================================= task delete done/notdone scripts============================-->
+<script>
+  function taskDone(taskId)
+  {
+    var xmlhttp = new XMLHttpRequest();
+    var url = "/taskDone/"+ taskId;
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("circleSlider"+taskId).style.color="#1e6"
+        document.getElementById("circleSlider"+taskId).setAttribute("onclick","taskNotDone("+taskId+")")
+        document.getElementById("circle"+taskId).style.color="#1e6"
+        document.getElementById("circle"+taskId).setAttribute("onclick","taskNotDone("+taskId+")")
+     
+        console.log("data statius changed to yes")
+      }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  }
+  function taskNotDone(taskId)
+  {
+    var xmlhttp = new XMLHttpRequest();
+    var url = "/taskNotDone/"+ taskId;
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        
+        document.getElementById("circleSlider"+taskId).style.color="rgb(148, 148, 148)"
+        document.getElementById("circleSlider"+taskId).setAttribute("onclick","taskDone("+taskId+")")
+        document.getElementById("circle"+taskId).style.color="rgb(148, 148, 148)"
+        document.getElementById("circle"+taskId).setAttribute("onclick","taskDone("+taskId+")")
+          console.log("data statius changed to no")
+      }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  }  
+
+  function deleteTask(taskId,rowId)
+  { 
+    if(document.getElementById(taskId)){   
+        document.getElementById(taskId).style.display="none"
+        document.getElementById("hr"+taskId).style.display="none"
+    }    
+    document.getElementById("Slider"+taskId).style.display="none"
+    
+    var xmlhttp = new XMLHttpRequest();
+    var url = "/taskDelete/"+ taskId;
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          console.log("task Deleted successfully")
+      }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  }
+</script>
+
+<!--================================= addtask form validation scripts============================-->
+<script>
+          function addTaskFormValid(inputNo)
+            {
+                var status = false;
+                console.log(inputNo);
+                
+                    enteredDate =document.getElementById("date").value;
+                    var d = new Date();
+                    var todayDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+                    var td = new Date(todayDate);
+                    var ed = new Date(enteredDate);
+                    status = ed < td;
+                
+                title = document.getElementById("title").value;
+                date =  document.getElementById("date").value;
+                if(title=="" || date=="")
+                {
+                    console.log("not allowed")
+                    document.getElementById("addTaskBtn").disabled = true;
+                    document.getElementById("addTaskBtn").style.cursor="not-allowed";
+                    if (status == true)
+                    {
+                      console.log("date NOT ALLOWED STATUS");
+                        document.getElementById("dateSmallError").style.display="block";
+                    }
+                    else{
+                      console.log("date allowed")
+                      document.getElementById("dateSmallError").style.display="none";
+                    }
+                }
+                else{
+                  if (status == true)
+                    {
+                      console.log("NOT ALLOWED STATUS");
+                        document.getElementById("dateSmallError").style.display="block";
+                        document.getElementById("addTaskBtn").disabled = true;
+                        document.getElementById("addTaskBtn").style.cursor="not-allowed";
+                    }
+                    else{
+                      console.log("allowed")
+                      document.getElementById("dateSmallError").style.display="none";
+                      document.getElementById("addTaskBtn").disabled = false;
+                      document.getElementById("addTaskBtn").style.cursor="pointer";
+                    }
+                    
+                }
+            }
+  </script>
+
+  </script>
+
+</body>
+
+</html>

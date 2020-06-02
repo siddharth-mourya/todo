@@ -1,0 +1,122 @@
+/*--------------------------------------------------------------
+# scroll bar design for slider
+--------------------------------------------------------------*/
+
+
+/* width */
+div.task-box::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+div.task-box::-webkit-scrollbar-track {
+  background: #bdbaba; 
+}
+ /* Handle */
+div.task-box::-webkit-scrollbar-thumb {
+  background: #393a3a;
+}
+
+/* Handle on hover */
+div.task-box::-webkit-scrollbar-thumb:hover {
+  background: rgb(43, 42, 42); 
+}
+
+
+
+/*--------------------------------------------------------------
+# adjacent-days css holding todolist of yesterday today tommorow
+--------------------------------------------------------------*/
+.adjacent-days {
+    padding-top: 35px;
+  }
+  
+  .adjacent-days .task-box {
+    height:300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: #5f687b;
+    background: #f7f7f8;
+    border-radius: 10px;
+    border: 1px solid #f9f9fa;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    border-bottom: 5px solid rgb(85, 85, 84);
+    border-width: 50%;
+  }
+  .adjacent-days .task-box p
+  {
+    padding-bottom: 5px;
+  }
+
+  .adjacent-days .icon {
+    margin: 0 0 0 0;
+  }
+  
+  
+  .adjacent-days .title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .adjacent-days .title a {
+    color: #5f687b;
+    transition: 0.3s;
+  }
+  
+  .adjacent-days .task-box:hover {
+    border-color: #eaecef;
+    
+  }
+  
+  .adjacent-days .task-box:hover .title a {
+    color: #F4D03F;
+  }
+  
+  .adjacent-days .description {
+    line-height: 15px;
+    font-size: 14px;
+    padding-right:-3px;
+  }
+  
+  .task-adj-heading
+  {
+    z-index: 2;
+    border-radius: 10px;
+    margin-left: 0%;
+    width: 105%;  
+    margin-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #2b2c2b ;
+    padding-left: 35%;
+    position: sticky;
+    top: 0;
+  }
+
+   
+  .task-adj-heading > h4 > a
+  {
+    color: #F4D03F;
+  }
+  .task-adj-heading > h4 > a:hover
+  {
+    color:#ffffff;
+  }
+ 
+.each-task-row
+{
+  margin-bottom: -25px;
+}  
+.hr-50
+{
+  width: 94%;
+}
+
+@media (max-width: 768px) {
+  .each-task-row
+  {
+    text-align: center;
+  }
+}

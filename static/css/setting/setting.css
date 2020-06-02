@@ -1,0 +1,234 @@
+body{
+    background:  #F4D03F;
+}
+
+
+html{
+    scroll-behavior: smooth;
+  }
+
+ a:hover{
+    text-decoration: none;
+    }  
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+
+/*--------------------------------------------------------------
+# scroll bar design full body
+--------------------------------------------------------------*/
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+ ::-webkit-scrollbar-track {
+    background: #bdbaba; 
+  }
+   /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #393a3a;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(43, 42, 42); 
+  }
+  
+
+/*--------------------------------------------------------------
+# profile settings
+--------------------------------------------------------------*/
+
+.profile-container{
+    margin-top:6%;
+    border-radius: 0px;
+    background: #fff;
+    border-radius: 10px 0px 0px 10px;
+}
+
+/* settings-nav-section css */
+.settings-nav-section
+{
+    padding: 3%;
+    background-color: #393a3a;
+    color: #fff;
+    border-radius:  0px 0px 0px 10px;
+}
+
+    /*  profile logo css */
+    .profile-logo img
+    {
+        width:150px;
+        height:150px;
+        border-radius: 50%;
+    }
+
+    /* userdetails under profile nav css */
+    .user-details{
+        padding-left: 3%;
+        margin-top:1%;
+    }
+
+
+
+    /*  profile nav under logo css */
+    .profile-navs{
+        padding-left: 3%;
+    }
+    .profile-navs p{
+        font-size: 12px;
+        color: #fff;
+        font-weight: 600;
+        margin-top: 10%;
+    }
+    .profile-navs a{
+        text-decoration: none;
+        color: #F4D03F;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .profile-navs a:hover{
+        text-decoration: none;
+        color: rgb(37, 121, 247);
+    }
+    .profile-navs ul{
+        list-style: none;
+    }
+
+
+    .setting-content-section
+    {
+        padding: 4%;
+    }
+
+    /*change section */
+    #addCatContent
+    {
+        display: block;
+    }
+    #deleteAllTask
+    {
+        display: none;
+    }
+    #changeEmail
+    {
+        display: none;
+    }
+    #changePassword
+    {
+        display: none;
+    }
+ /* ---------------------------------------------------------------------------------------
+   side other thann nav ------------------------------------------------------------------- */
+
+    #addCatContent > a:hover{
+    text-decoration: none;
+    }
+
+    /* change email and addcat css */
+
+    form.AddNewCat input[type=text] ,form.changeEmail input[type=text] {
+        width: 50%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        font-size: 16px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 12px 20px 12px 20px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    
+    form.AddNewCat input[type=text]:hover ,form.changeEmail input[type=text]:hover {
+        width: 70%;
+    }
+    form.AddNewCat input[type=submit] ,form.changeEmail input[type=submit] {
+        
+        border-radius: 10px;
+        font-size: 16px;
+        background-color: rgb(54, 158, 228);
+
+        padding: 8px 8px 8px 8px;
+    }
+
+    /* delete task css */
+
+    form.DeleteTask  input[type=text] {
+        width: 50%;
+    
+        border: 2px solid rgb(231, 54, 54);
+        font-size: 16px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 12px 20px 12px 20px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    
+    form.DeleteTask input[type=text]:hover {
+        width: 70%;
+    }
+    form.DeleteTask input[type=submit] {
+        
+        border-radius: 10px;
+        font-size: 16px;
+        background-color: rgb(238, 54, 48);
+
+        padding: 8px 8px 8px 8px;
+    }
+
+    /* change password css */
+
+    form.changePassword   input[type=text] {
+        width: auto;
+        margin-top: 4px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        font-size: 16px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 12px 20px 12px 20px;
+    }
+
+    form.changePassword input[type=submit] {
+        margin-top: 4px;
+        border-radius: 10px;
+        font-size: 16px;
+        background-color: rgb(54, 158, 228);
+
+        padding: 8px 8px 8px 8px;
+    }
+  
+@media(max-width: 991px)
+{
+    .profile-container{
+        margin-top:11%;
+    }
+    #header {
+        padding: 15px 0;
+      }
+      
+}
+
+@media(max-width: 767px)
+{
+    .profile-container{
+        margin-top:20%;
+    }
+    #header {
+        padding: 10px 0;
+      }
+}
+@media(max-width: 575px)
+{
+    .profile-container{
+        margin-right:20px;
+        margin-top:20%;
+    }
+}
